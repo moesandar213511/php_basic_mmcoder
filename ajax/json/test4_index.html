@@ -1,0 +1,32 @@
+<!-- use like that method in time that API request  -->
+<button id="fetch">Fetch</button>
+<div id="data"></div>
+
+<!-- JS catch json {'name':'moelay','age':24} in index.php with asynchronous request. output json with unorder list.  -->
+
+<script>
+	var fetch = document.querySelector("#fetch"); // take object of fetch and data
+	var data = document.querySelector("#data");
+
+	fetch.addEventListener('click', function(){
+		//alert('click');
+		var req = new XMLHttpRequest();
+		req.onreadystatechange = function(){
+				if(req.readyState == 4 && req.status == 200){
+					//console.log(req.responseText); //output json string in test4_index.php
+					var reqData= JSON.parse(req.responseText);// JSON.parse(); => change from json string into javascript know object 
+					//console.log(reqData);
+					var str = '';
+					str += "<ul>";
+						reqData.forEach(d => {
+							str += `<li>${d.name} ${d.age}</li>`//write in javascript template literal
+							// ``(backtick) => ES6 feature of JS =>  use `` if output data from javascript 
+						});
+					str += "</ul>"; 
+					data.innerHTML = str;
+				} 
+		}
+		req.open('GET','test4_index.php');
+		req.send();
+	})
+</script>
