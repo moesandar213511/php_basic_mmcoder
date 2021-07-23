@@ -24,6 +24,9 @@
 		case 'orange':
 			echo "I like Orange";
 			break;
+		case 'piapple':
+			echo "I like piapple";
+			break;
 		
 		default:
 			echo "I don't like any fruits";
